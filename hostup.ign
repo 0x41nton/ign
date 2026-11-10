@@ -1,0 +1,68 @@
+{
+  "ignition": {
+    "version": "3.4.0"
+  },
+  "passwd": {
+    "users": [
+      {
+        "name": "core",
+        "sshAuthorizedKeys": [
+          "sk-ssh-ed25519@openssh.com AAAAGnNrLXNzaC1lZDI1NTE5QG9wZW5zc2guY29tAAAAICBvX+kmHBmnmms5JXvmCWtAjYh8zguva+lpeO4tKuHoAAAABHNzaDo="
+        ]
+      }
+    ]
+  },
+  "storage": {
+    "files": [
+      {
+        "path": "/etc/hostname",
+        "contents": {
+          "compression": "",
+          "source": "data:,hostup-01"
+        },
+        "mode": 420
+      },
+      {
+        "path": "/etc/ssh/sshd_config.d/10-hardening.conf",
+        "contents": {
+          "compression": "gzip",
+          "source": "data:;base64,H4sIAAAAAAAC/2SPwUrEMBCG73mKPIARW6ngzV4U0YUiK3hNJ0MztM2Emal13152T8pe/+8/fN+AspJ9MNs7T1R8YTdE1Z0l9ZtlLEYQjfhC3sb0WgwlgtE3XvP/ywEtc1Jft3EhmPHkhm2c8dQDYDVM/TKxkOVVvc5BNQdMbdc1j09csajmW+D1RueAkDQGzbENhdRq2z38vbh+WXj/VBT1wILuEH/OJkchVH/vLmEvEgGPtKJv79xX0zyz7FESleks/hsAAP//csse/AYBAAA="
+        },
+        "mode": 420
+      },
+      {
+        "path": "/etc/nftables/host.nft",
+        "contents": {
+          "compression": "gzip",
+          "source": "data:;base64,H4sIAAAAAAAC/3SNwWrzMBCE736KgVzz87upa0JybA899hVUaY2XKtpF2hhM8LuXOi51DT3Oft/MmnuPBE5k6KVYFSiSEbbnTcatAnzvOIGTXu8ZsFEJHUejjF7kY4GaWTLbuKAzVCL7ESGLnueiNxRzRqDy9YlLT2GfKTqjAOc9qf32OA0ucpgnZsLcIcravZA5xEazmID9Rf+GOrT/tgZri+JCyOjoWJ9O/x9qXIMiqGTDU9MuMoAdXl6f34YWPjKle938t3o4rGd3K3LDsd6jaR4x/ShTNVWfAQAA//+mxhyVlQEAAA=="
+        },
+        "mode": 420
+      },
+      {
+        "path": "/etc/zincati/config.d/55-updates-strategy.toml",
+        "contents": {
+          "compression": "gzip",
+          "source": "data:;base64,H4sIAAAAAAAC/zTNwQrCMAyA4XufIuQsoyB4EHb15knBwyij2LAFXDvahLG3lwx2+kgI+QddUxRqwTWpUWjaoQdcqXJJ/EU3nAfdues2zqlsIbgU9wY9DIDPkvEC+FYyPpSOaVbjUdl4RTnQjGCxWGUUXshy/nr3Ht2P8iTzuHBWIft88+4fAAD//9oKnxWgAAAA"
+        },
+        "mode": 420
+      },
+      {
+        "path": "/etc/systemd/zram-generator.conf",
+        "contents": {
+          "compression": "",
+          "source": "data:;base64,W3pyYW0wXQp6cmFtLXNpemUgPSBtaW4ocmFtIC8gMiwgNDA5NikK"
+        },
+        "mode": 420
+      }
+    ]
+  },
+  "systemd": {
+    "units": [
+      {
+        "contents": "[Unit]\nDescription=Host input firewall\nBefore=network-pre.target sshd.service\nWants=network-pre.target\n[Service]\nType=oneshot\nRemainAfterExit=yes\nExecStart=/usr/sbin/nft -f /etc/nftables/host.nft\nExecReload=/usr/sbin/nft -f /etc/nftables/host.nft\nExecStop=/usr/sbin/nft delete table inet host\n[Install]\nWantedBy=multi-user.target\n",
+        "enabled": true,
+        "name": "nftables-host.service"
+      }
+    ]
+  }
+}
