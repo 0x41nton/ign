@@ -9,16 +9,117 @@
         "sshAuthorizedKeys": [
           "sk-ssh-ed25519@openssh.com AAAAGnNrLXNzaC1lZDI1NTE5QG9wZW5zc2guY29tAAAAICBvX+kmHBmnmms5JXvmCWtAjYh8zguva+lpeO4tKuHoAAAABHNzaDo="
         ]
+      },
+      {
+        "name": "netbird",
+        "shell": "/usr/sbin/nologin",
+        "uid": 1001
       }
     ]
   },
   "storage": {
+    "directories": [
+      {
+        "group": {
+          "name": "netbird"
+        },
+        "path": "/etc/netbird",
+        "user": {
+          "name": "netbird"
+        },
+        "mode": 448
+      },
+      {
+        "path": "/etc/containers/systemd/users/1001",
+        "mode": 493
+      }
+    ],
     "files": [
+      {
+        "path": "/var/lib/systemd/linger/netbird",
+        "mode": 420
+      },
+      {
+        "path": "/etc/sysctl.d/90-unprivileged-ports.conf",
+        "contents": {
+          "compression": "",
+          "source": "data:,net.ipv4.ip_unprivileged_port_start%3D80"
+        },
+        "mode": 420
+      },
+      {
+        "path": "/etc/containers/systemd/users/1001/caddy.container",
+        "contents": {
+          "compression": "gzip",
+          "source": "data:;base64,H4sIAAAAAAAC/0yOsU4DMQyGdz9FHwAuLRuVMkBZunTgKAynG9zEPaLm4pPjawlPjy4SiM3/99nW3x1T0B5eKDsJkwZOdofelxX5gVaT8FcB6HacFEMi6eFvPOBI1i27sB9xIOvZXUiawCaGk6AUU+32odls4GlWPk4elazQELJKgQPpjeViPzkrvHOcR7KG1JlEegriTW1yDpG2Fdd3/6Dw3ffvXXX3HhWbayVbswSAriW5Bkc9vIWReNZWUbQlZx/Xa3ilvESL8YYlA3T7lBVj7OEDk5J/LtbTGeeojaIMpPATAAD//81gS88xAQAA"
+        },
+        "mode": 420
+      },
+      {
+        "path": "/etc/containers/systemd/users/1001/netbird-server.container",
+        "contents": {
+          "compression": "gzip",
+          "source": "data:;base64,H4sIAAAAAAAC/3SNwU7zMBCE7/sUfYC/SX6BRIjkAwUOvVQVpXCIctja27DCsav1JhCeHhUaEIderPHMfLP1NrA2cEfJCh+UYzAr0gWLmyWSgQSgvo1BkQNJAz9yhR2ZQLpjcfNTc9lhS8ZF+0qSccxP8a86FSuPSknhpte4PThUMkItJ5URnqLvOzI5qZ2o3Maw5zYbsfPV2UDiv4+Jns45VMyGL6/KB5Tc826C4f6drJnPvzdm53Zh3e88p5d1FDVlUf6vyuKPd3F5VVbHJ+/dAaDekAxsqYFH7ij2ulEU3ZA110UBD5SOX4P+DccEUC9DUvS+gWcMSm4xGkd77L1mitKSwmcAAAD//9ZxwoygAQAA"
+        },
+        "mode": 420
+      },
+      {
+        "path": "/etc/containers/systemd/users/1001/netbird-dashboard.container",
+        "contents": {
+          "compression": "gzip",
+          "source": "data:;base64,H4sIAAAAAAAC/0TMzUrDUBDF8f08hS9gm2Ut3IX1A7opxVhchCwmucd08GZumTuJ5O1F0HZ3Dvz4NycVb+kZpTe5uGQNB/hOLN5FLucus0Wi5imrsyispes88Iig8E4s3t/wfuQBIeb+C7aSvP4TktdXs03sKE6Pk+fTJbIjGAYpbgu96CyWdYT6qySENbz/b9wKK+hMx6lLUs7HbB421ababiqipobN0qOldxmRJ6+dzWv04aGq6A3l9wZO37wUomavxTmllj5YHXG3hIhPnpKvnG2A008AAAD//xQYTDEhAQAA"
+        },
+        "mode": 420
+      },
+      {
+        "path": "/etc/containers/systemd/users/1001/netbird-data.volume",
+        "contents": {
+          "compression": "",
+          "source": "data:,%5BVolume%5D%0AVolumeName%3Dnetbird-data%0ADriver%3Dlocal%0A"
+        },
+        "mode": 420
+      },
+      {
+        "path": "/etc/containers/systemd/users/1001/caddy-data.volume",
+        "contents": {
+          "compression": "",
+          "source": "data:,%5BVolume%5D%0AVolumeName%3Dcaddy-data%0ADriver%3Dlocal%0A"
+        },
+        "mode": 420
+      },
+      {
+        "group": {
+          "name": "netbird"
+        },
+        "path": "/etc/netbird/Caddyfile",
+        "user": {
+          "name": "netbird"
+        },
+        "contents": {
+          "compression": "gzip",
+          "source": "data:;base64,H4sIAAAAAAAC/2ySQU/bThDFz95P8ZQcSFCwk/z5tyin0lAJqqqKIOoVrb2TeIW96+6MAxbKd6+8piq0nCxbM7/35vmN4UhyG0zKHTtvKKUW3kFKwrVnaRv82NylWFMQu7OFFuIVvpGcML64InSNYOKIDPcraoymzStb4BKBCh8MGm+dWLdHSYGgncF2vcHFPDs//w++ITdN1bNKmMKBAuNZJYnYmnwrw0syxhXtdFsJFvUKGoF+tsSC3JsOUmoBkzMM56XsdXY+QKO2rhWCZRStwO926cD6TvLZBnPC2N9u1mAJpGvGhO3e6WqGWju9p5qc4K5zRfbV51PoQK9lLfEAi+rWVBRFK+/2FGbxxkeKK0wCOlDo8GEOTjGaj1CTdoyRGY4azQYUe7RM0JECemoqW1jBQVctpQikzX1J2lDAZFFPo0YUnvxfT8Fiqwq6aaounhnH+3zu48zyvFRJclTJUR2VGuPWt/GPaIZ1rxMh6b+fseggZFIusdbGdGBnm4YkVe905Vn1qWqxBxoinfyJMBtSnWIoyPV2u8mWKCrq+U8C8bFnuS4eyJlUJZ/2oSnwcujaOyEnZ9uuoXhc3z7rXdYPnaok9Mky3TfBP3V4WV0WqyxbLD+m83SeLlYX84uF6h2ufZ1bRwZD0dBoKXmFQJXuZhh84pFy9sUDCSLzTRsuNzczUJ2TMWRwYza93RfnkYYswk6RPfJZ3M9OkenG9g+vWymX2b+ufxPesXylucy9DgaT2KGh3lQxTf/GvNmeq6P6FQAA//+VcIFM1wMAAA=="
+        },
+        "mode": 420
+      },
+      {
+        "group": {
+          "name": "netbird"
+        },
+        "path": "/etc/netbird/dashboard.env",
+        "user": {
+          "name": "netbird"
+        },
+        "contents": {
+          "compression": "gzip",
+          "source": "data:;base64,H4sIAAAAAAAC/4yPwWrjMBCG734KwR52Fxq7tDkVdHBskQgcWUgyNCcho0lscGQjKYe8fXGdFEqh7XXm+79/5g9iEDe9t8ia0LWj8fYBmYBO4MCbCBa11zvydx7H2LvTKkTjI9g0dOgfnFuwFiyilv9PE0bUhopS77d7pXNONWElrylTuItxCi9Z5iC2vbdpuAY3Wkjh8jm0Fbz4dTJv1E7nTUkJKwi+AauPZ5Z9UVHClKblD4AkhSAK36VqVwuqDt/UZ6O5xO4paSR55x/x0QwBFoFsOK+FIqWWRc2JxOMErrdo8uOxHwDB2fQDOvnxMoUlIUhJBSmUbgTFmWtXs/0mo9V84Rci9AO4uIBsS9mrlrLScy9er5+TiihJWCEOXOmy3ueUYTc6SN4CAAD//2vegsD4AQAA"
+        },
+        "mode": 384
+      },
       {
         "path": "/etc/hostname",
         "contents": {
           "compression": "",
-          "source": "data:,hostup-01"
+          "source": "data:,edge-proxy"
         },
         "mode": 420
       },
@@ -27,14 +128,6 @@
         "contents": {
           "compression": "gzip",
           "source": "data:;base64,H4sIAAAAAAAC/2SPwUrEMBCG73mKPIARW6ngzV4U0YUiK3hNJ0MztM2Emal13152T8pe/+8/fN+AspJ9MNs7T1R8YTdE1Z0l9ZtlLEYQjfhC3sb0WgwlgtE3XvP/ywEtc1Jft3EhmPHkhm2c8dQDYDVM/TKxkOVVvc5BNQdMbdc1j09csajmW+D1RueAkDQGzbENhdRq2z38vbh+WXj/VBT1wILuEH/OJkchVH/vLmEvEgGPtKJv79xX0zyz7FESleks/hsAAP//csse/AYBAAA="
-        },
-        "mode": 420
-      },
-      {
-        "path": "/etc/nftables/host.nft",
-        "contents": {
-          "compression": "gzip",
-          "source": "data:;base64,H4sIAAAAAAAC/3SNwWrzMBCE736KgVzz87upa0JybA899hVUaY2XKtpF2hhM8LuXOi51DT3Oft/MmnuPBE5k6KVYFSiSEbbnTcatAnzvOIGTXu8ZsFEJHUejjF7kY4GaWTLbuKAzVCL7ESGLnueiNxRzRqDy9YlLT2GfKTqjAOc9qf32OA0ucpgnZsLcIcravZA5xEazmID9Rf+GOrT/tgZri+JCyOjoWJ9O/x9qXIMiqGTDU9MuMoAdXl6f34YWPjKle938t3o4rGd3K3LDsd6jaR4x/ShTNVWfAQAA//+mxhyVlQEAAA=="
         },
         "mode": 420
       },
@@ -54,14 +147,20 @@
         },
         "mode": 420
       }
+    ],
+    "links": [
+      {
+        "path": "/etc/systemd/user/timers.target.wants/podman-auto-update.timer",
+        "target": "/usr/lib/systemd/user/podman-auto-update.timer"
+      }
     ]
   },
   "systemd": {
     "units": [
       {
-        "contents": "[Unit]\nDescription=Host input firewall\nBefore=network-pre.target sshd.service\nWants=network-pre.target\n[Service]\nType=oneshot\nRemainAfterExit=yes\nExecStart=/usr/sbin/nft -f /etc/nftables/host.nft\nExecReload=/usr/sbin/nft -f /etc/nftables/host.nft\nExecStop=/usr/sbin/nft delete table inet host\n[Install]\nWantedBy=multi-user.target\n",
+        "contents": "[Unit]\nDescription=Install qemu-guest-agent\nWants=network-online.target\nAfter=network-online.target\nBefore=zincati.service\n[Service]\nType=oneshot\nRemainAfterExit=yes\nTimeoutStartSec=900\nExecStart=/bin/sh -c 'rpm -q qemu-guest-agent \u003e/dev/null || rpm-ostree install --apply-live --allow-inactive --idempotent qemu-guest-agent'\nExecStart=/usr/bin/systemctl daemon-reload\nExecStart=-/usr/bin/systemctl start qemu-guest-agent.service\n[Install]\nWantedBy=multi-user.target\n",
         "enabled": true,
-        "name": "nftables-host.service"
+        "name": "layer-packages.service"
       }
     ]
   }
